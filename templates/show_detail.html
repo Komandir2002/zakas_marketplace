@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css/' %}">
+</head>
+<style>
+    body {
+       background-color: #FF3CAC;
+        background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+        height: 5px;
+
+
+
+
+    }
+
+    .shows__container{
+        object-fit: fill;
+        color: gold;
+    }
+    .detail__img {
+        height: 300px;
+        width: 300px;
+        margin-left: 300px;
+        border-radius: 25px;
+
+
+    }
+
+</style>
+
+<body>
+<div class="container butons">
+    {% if request.user.is_authenticated and request.user.is_superuser%}
+    <a href="/posts/" type="button" class="btn btn-outline-success">Back</a>
+    <a href="/posts/{{object.id}}/update/" class="btn btn-outline-success show_button">Update</a>
+    <a href="/posts/{{object.id}}/delete/" class="btn btn-outline-success show_button">Delete</a>
+    {% endif %}
+</div>
+<div class="container shows__container">
+    <img src="{{ object.image.url }}"  class="detail__img" alt="">
+    <h2>Job_title: {{object.Job_title}}</h2>
+    <p>Specialization: {{object.Specialization}}</p>
+    <p>Employment_type: {{object.Employment_type}}</p>
+    <p>Salary: {{object.Salary}}</p>
+    <p>Requirement: {{object.Requirement}}</p>
+    <p>Descriptixon: {{object.Description}}</p>
+</div>
+
+</body>
+</html>
