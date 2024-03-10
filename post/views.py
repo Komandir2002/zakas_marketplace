@@ -6,47 +6,46 @@ from django.views.generic import ListView
 from datetime import datetime, timedelta
 # Create your views here.
 
-class VacancyListView(generic.ListView):
+class MarketplaceListView(generic.ListView):
     paginate_by = 8
     template_name = 'posts.html'
-    queryset = models.Post.objects.all()
+    queryset = models.Marketplace.objects.all()
 
 
-class VacancyDetailView(generic.DetailView):
+class MarketplaceDetailView(generic.DetailView):
     template_name = "show_detail.html"
-
+    success_url = '/mp/'
     def get_object(self, **kwargs):
         show_id = self.kwargs.get("id")
-        return get_object_or_404(models.Post, id=show_id)
+        return get_object_or_404(models.Marketplace, id=show_id)
 
 
 
-class VacancyCreatedateView(generic.CreateView):
+class MarketplaceCreatedateView(generic.CreateView):
     template_name = "add_post.html"
-    form_class = forms.Form_for_bookshow
-    queryset = models.Post.objects.all()
-    success_url = "/posts/"
-
+    form_class = forms.Form_for_marketplase
+    queryset = models.Marketplace.objects.all()
+    success_url = '/mp/'
     def form_valid(self, form):
         print(form.cleaned_data)
-        return super(VacancyCreatedateView, self).form_valid(form=form)
+        return super(MarketplaceCreatedateView, self).form_valid(form=form)
 
-class VacancyUpdateView(generic.UpdateView):
+class MarketplaceUpdateView(generic.UpdateView):
     template_name = "vacancy_update.html"
-    form_class = forms.Form_for_bookshow
-    success_url = "/posts/"
-
+    form_class = forms.Form_for_marketplase
+    success_url = '/mp/'
     def get_object(self, **kwargs):
         show_id = self.kwargs.get("id")
-        return get_object_or_404(models.Post, id=show_id)
+        return get_object_or_404(models.Marketplace, id=show_id)
 
     def form_valid(self, form):
         print(form.cleaned_data)
 
-class VacancyDeleteView(generic.DeleteView):
-    success_url = "/posts/"
-    template_name = "delete_vacancy.html"
+        return super().form_valid(form)
 
+class MarketplaceDeleteView(generic.DeleteView):
+    template_name = "delete_vacancy.html"
+    success_url = '/mp/'
     def get_object(self, **kwargs):
         show_id = self.kwargs.get("id")
-        return get_object_or_404(models.Post, id=show_id)
+        return get_object_or_404(models.Marketplace, id=show_id)

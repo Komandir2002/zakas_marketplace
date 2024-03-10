@@ -46,7 +46,7 @@
     }
 </style>
 {% if request.user.is_authenticated and request.user.is_superuser%}
-<a href="/add_post/" class="btn btn-outline-success show_button">Create new book</a>
+<a href="/add_post/" class="btn btn-outline-success show_button">Create new work</a>
 {% endif %}
 {% for contact in page_obj %}
     {# Each "contact" is a Contact model object. #}
@@ -77,9 +77,9 @@
             <div class="card">
                 <img class="card-img-top shows__img" src="{{show.image.url}}" alt="Card image cap">
                 <div class="card-body pacage">
-                    <h5 class="card-title bloksssss">{{ show.Job_title}}</h5>
-                    <p class="card-text">{{show.Specialization}}</p>
-                    <a href="/posts/{{show.id }}/" class="btn btn-primary">Go {{show.Job_title}}</a>
+                    <h5 class="card-title bloksssss">{{ show.material}}</h5>
+                    <p class="card-text">{{show.price}} сом</p>
+                    <a href="/mp/{{show.id }}/" class="btn btn-primary">Посмотреть</a>
                 </div>
             </div>
         </div>

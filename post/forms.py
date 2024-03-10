@@ -2,15 +2,7 @@ from django import forms
 from . import models
 
 
-class Form_for_bookshow(forms.ModelForm):
+class Form_for_marketplase(forms.ModelForm):
     class Meta:
-        model = models.Post
+        model = models.Marketplace
         fields = "__all__"
-
-        # Второй способ для частичного ввода
-        # fields = [
-        #     "title",
-        #     "description",
-        #     "genre",
-        #
-        # ]
